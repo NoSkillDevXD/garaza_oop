@@ -116,15 +116,15 @@ public class remontDarbnica {
             bojajumuTeksts.append("- ").append(dala).append(" (").append(cena).append(" EUR)\n");
         }
 
-        int atlīdzība = daluCena + 90;
+        int atlidziba = daluCena + 90;
 
-        String ziņa = "Klienta mašīna: " + klientaMasina.nosaukums() + "\n\n"
+        String zina = "Klienta mašīna: " + klientaMasina.nosaukums() + "\n\n"
                 + "Bojājumi:\n" + bojajumuTeksts.toString() + "\n"
                 + "Daļu izmaksas: " + daluCena + " EUR\n"
-                + "Klienta maksa par remontu: " + atlīdzība + " EUR\n\n"
+                + "Klienta maksa par remontu: " + atlidziba + " EUR\n\n"
                 + "Vai vēlies pieņemt šo pasūtījumu?";
 
-        int atbilde = JOptionPane.showConfirmDialog(null, ziņa, "Klienta remonts", 
+        int atbilde = JOptionPane.showConfirmDialog(null, zina, "Klienta remonts", 
                 JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 
         if (atbilde == JOptionPane.OK_OPTION) {
@@ -134,10 +134,10 @@ public class remontDarbnica {
             }
 
             garaza.nauda -= daluCena; 
-            garaza.nauda += atlīdzība; 
+            garaza.nauda += atlidziba; 
             
             JOptionPane.showMessageDialog(null, 
-                    "Remonts pabeigts!\nKlienta mašīna salabota un nodota īpašniekam.\nNOPELNĪTĀ PEĻŅA: +" + (atlīdzība - daluCena) + " EUR!", 
+                    "Remonts pabeigts!\nKlienta mašīna salabota un nodota īpašniekam.\nNOPELNĪTĀ PEĻŅA: +" + (atlidziba - daluCena) + " EUR!", 
                     "Klienta remonts", JOptionPane.INFORMATION_MESSAGE);
         }
     }

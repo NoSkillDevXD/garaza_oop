@@ -32,11 +32,16 @@ public class Garaza {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                     null, izveles, izveles[0]);
 
-            if (atbilde == 0) izveidotMasinu();
-            else if (atbilde == 1) apskatitMasinas();
-            else if (atbilde == 2) brauktArMasinu();
-            else if (atbilde == 3) darbnica.atvert();
-            else if (atbilde == 4) pardotMasinu();
+            if (atbilde == 0) 
+            	izveidotMasinu();
+            else if (atbilde == 1) 
+            	apskatitMasinas();
+            else if (atbilde == 2) 
+            	brauktArMasinu();
+            else if (atbilde == 3) 
+            	darbnica.atvert();
+            else if (atbilde == 4) 
+            	pardotMasinu();
             else break;
         }
     }
@@ -133,21 +138,23 @@ public class Garaza {
         if (masina == null) return;
 
         String rezultats = masina.braukt();
-        int messageType = (masina.vajagRemontu || rezultats.contains("avārija") || rezultats.contains("bojāta"))
+        int pazinojums = (masina.vajagRemontu || rezultats.contains("avārija") || rezultats.contains("bojāta"))
                 ? JOptionPane.WARNING_MESSAGE : JOptionPane.INFORMATION_MESSAGE;
-        JOptionPane.showMessageDialog(null, rezultats, "BRAUCIENS", messageType);
+        JOptionPane.showMessageDialog(null, rezultats, "BRAUCIENS", pazinojums);
     }
 
     private void pardotMasinu() {
         Masina masina = izveletiesMasinu();
         if (masina == null) return;
 
-        // Cena tagad ir atkarīga no izlaiduma gada un mašīnas maksimālā ātruma!
+        // Cena ir atkarīga no izlaiduma gada un masinas maksimala atruma
         int vertiba = 50 + (masina.gads - 2000) * 3 + (masina.maksimalaAtrums * 2);
         if (masina.vajagRemontu) {
-            vertiba -= 50; // Ja mašīna ir bojāta, tās vērtība samazinās
+        	// Ja masina ir bojata tas vertiba samazinas
+            vertiba -= 50; 
         }
-        if (vertiba < 30) vertiba = 30; // Minimālā cena
+        // Minimala cena
+        if (vertiba < 30) vertiba = 30; 
 
         int apstiprinat = JOptionPane.showConfirmDialog(null,
                 "Vai tiešām vēlies pārdot " + masina.nosaukums() + " (Maksimālais ātrums: " + masina.maksimalaAtrums + " km/h) par " + vertiba + " EUR?",
@@ -161,15 +168,15 @@ public class Garaza {
     }
 
     private void izdzestMasinu(Masina m) {
-        int index = -1;
+        int temp = -1;
         for (int i = 0; i < skaits; i++) {
             if (masinas[i] == m) {
-                index = i;
+                temp = i;
                 break;
             }
         }
-        if (index != -1) {
-            System.arraycopy(masinas, index + 1, masinas, index, skaits - index - 1);
+        if (temp != -1) {
+            System.arraycopy(masinas, temp + 1, masinas, temp, skaits - temp - 1);
             masinas[--skaits] = null;
         }
     }
